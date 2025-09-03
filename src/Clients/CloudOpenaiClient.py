@@ -21,7 +21,7 @@ class CloudOpenaiClient(LlmInterface):
         chat_log_dir: str = 'logs/',
         faq_file: str = 'data/faq.json',
         orders_file: str = 'data/orders.json',
-        system_message: Union[str, None] = None
+        system_message: Union[str, None] = 'system_message.txt'
     ) -> None:
         self._config = config.openai
         self._log_dir = self._is_exist_log_dir(chat_log_dir)
@@ -145,7 +145,3 @@ class CloudOpenaiClient(LlmInterface):
         os.makedirs(log_dir, exist_ok=True)
         return log_dir
     
-if __name__ == '__main__':
-    conf = LlmConfig.load()
-    chat = CloudOpenaiClient(conf)
-    chat.start_dialog()
